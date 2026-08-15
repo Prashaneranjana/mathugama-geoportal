@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mathugama | The Green Heart</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Main UI Container -->
+    <main class="ui-canvas">
+        
+        <!-- Navigation -->
+        <header class="animate-fade-down">
+            <div class="logo">
+                <span class="logo-icon">⬡</span> MATHUGAMA
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li style="--delay: 0.1s"><a href="#home">Home</a></li>
+                    <li style="--delay: 0.2s"><a href="#about">About</a></li>
+                    <li style="--delay: 0.3s"><a href="#geo-portal">Geo-Portal</a></li>
+                    <li style="--delay: 0.4s"><a href="#community">Community</a></li>
+                    <li style="--delay: 0.5s"><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-action" style="--delay: 0.6s">
+                <a href="#geo-portal" class="btn-outline">Explore Map</a>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <video autoplay loop muted playsinline class="hero-video">
+                <source src="https://cdn.pixabay.com/video/2016/09/21/5320-183786481_tiny.mp4" type="video/mp4">
+            </video>
+            <div class="hero-overlay"></div>
+            
+            <div class="hero-content">
+                <div class="hero-card animate-fade-up">
+                    <h1>DISCOVER<br>MATHUGAMA</h1>
+                    <p>Experience the lush landscapes, rich culture, and vibrant rubber plantations of Sri Lanka's greenest village.</p>
+                    <a href="#about" class="btn-primary">Discover More <span class="arrow">➔</span></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid (Landmarks) -->
+        <section id="about" class="features-section">
+            <div class="section-header animate-on-scroll">
+                <h2>Village Landmarks</h2>
+                <p>Hover over the images to reveal the vibrant beauty of our historical and natural sites.</p>
+            </div>
+            
+            <div class="card-grid">
+                <!-- Landmark 1 -->
+                <div class="card animate-on-scroll" style="--delay: 0.1s">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1588614959060-4d144f28b207?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Rubber Estates">
+                        <div class="image-overlay"></div>
+                        <div class="card-badge">Industry</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Rubber Estates</h3>
+                        <p>The economic heartbeat of Mathugama, featuring miles of serene, green rubber plantations that have sustained our community for generations.</p>
+                        <a href="#" class="card-link">Explore the trails</a>
+                    </div>
+                </div>
+
+                <!-- Landmark 2 -->
+                <div class="card animate-on-scroll" style="--delay: 0.3s">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1625736300986-f6334f6479eb?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Pahiyangala Cave">
+                        <div class="image-overlay"></div>
+                        <div class="card-badge">Heritage</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Pahiyangala Cave</h3>
+                        <p>Located near our borders, one of the largest natural rock caves in Asia holding ancient secrets of prehistoric Sri Lankan settlements.</p>
+                        <a href="#" class="card-link">Discover history</a>
+                    </div>
+                </div>
+
+                <!-- Landmark 3 -->
+                <div class="card animate-on-scroll" style="--delay: 0.5s">
+                    <div class="card-image-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544837890-333fccf8be29?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Kukule Ganga">
+                        <div class="image-overlay"></div>
+                        <div class="card-badge">Nature</div>
+                    </div>
+                    <div class="card-content">
+                        <h3>Kukule Ganga</h3>
+                        <p>Embark on natural trails, hike alongside pristine river borders, and uncover hidden biodiversity in our untouched environments.</p>
+                        <a href="#" class="card-link">View the waters</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- UPDATED: Geo-Portal Section -->
+        <section id="geo-portal" class="geo-portal-section">
+            <div class="section-header animate-on-scroll">
+                <h2>Interactive Geo-Portal</h2>
+                <p>Analyze topographical data, plot ecological borders, and explore the terrain of Mathugama.</p>
+            </div>
+            
+            <div class="map-container animate-on-scroll" style="--delay: 0.2s">
+                <!-- LIVE MAP IFRAME CENTERED ON MATHUGAMA -->
+                <iframe class="map-background" src="https://www.openstreetmap.org/export/embed.html?bbox=80.08%2C6.50%2C80.14%2C6.55&layer=mapnik&marker=6.52%2C80.11" allowfullscreen></iframe>
+                
+                <div class="map-grid-overlay"></div>
+                
+                <!-- Floating Map Controls -->
+                <div class="map-controls">
+                    <h4>Map Layers</h4>
+                    <button class="layer-btn active">
+                        <span class="layer-icon">🗺️</span> Terrain View
+                    </button>
+                    <button class="layer-btn">
+                        <span class="layer-icon">🌿</span> Plantation Zones
+                    </button>
+                    <button class="layer-btn">
+                        <span class="layer-icon">🛣️</span> Infrastructure
+                    </button>
+                    
+                    <div class="map-stats">
+                        <div class="stat">
+                            <span class="stat-value">6.52° N</span>
+                            <span class="stat-label">Latitude</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">80.11° E</span>
+                            <span class="stat-label">Longitude</span>
+                        </div>
+                    </div>
+
+                    <!-- NEW: Download GeoPackage Button -->
+                    <div class="map-export" style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.1);">
+                        <h4 style="margin-bottom: 10px;">Export Data</h4>
+                        <!-- Replace the href value with the actual path to your .zip file -->
+                        <a href="mathugama_geopackage.zip" download="Mathugama_GeoPackage.zip" class="btn-primary" style="display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; text-decoration: none; padding: 10px; box-sizing: border-box;">
+                            <span>💾</span> Download GeoPackage (.zip)
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Animated Map Marker (Acts as a cool center crosshair now) -->
+                <div class="map-marker" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    <div class="pulse-ring"></div>
+                    <div class="marker-dot"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Community Section -->
+        <section id="community" class="community-section">
+            <div class="community-layout animate-on-scroll">
+                <div class="community-text">
+                    <h2>Join The Community</h2>
+                    <p>Share your experiences, photos, and stories about Mathugama. Connect with locals and travelers alike to preserve our village's beauty.</p>
+                    <div class="social-links">
+                        <a href="#" class="social-btn">Facebook</a>
+                        <a href="#" class="social-btn">Instagram</a>
+                        <a href="#" class="social-btn">Twitter</a>
+                    </div>
+                </div>
+                
+                <div class="community-board">
+                    <form class="comment-form">
+                        <h4>Leave a Note</h4>
+                        <div class="input-group">
+                            <input type="text" placeholder="Your Name" required>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="input-group">
+                            <textarea rows="4" placeholder="Share your thoughts about Mathugama..." required></textarea>
+                            <span class="focus-border"></span>
+                        </div>
+                        <button type="submit" class="btn-primary">Post to Board</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <div class="section-header animate-on-scroll">
+                <h2>Get in Touch</h2>
+                <p>Have questions about visiting, local administration, or specific geographical data? Reach out to us.</p>
+            </div>
+            
+            <div class="contact-layout animate-on-scroll" style="--delay: 0.2s">
+                <div class="contact-info-cards">
+                    <div class="info-card">
+                        <div class="info-icon">📍</div>
+                        <h4>Visit Us</h4>
+                        <p>Mathugama Divisional Secretariat,<br>Mathugama, 12100,<br>Sri Lanka</p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">✉️</div>
+                        <h4>Email Us</h4>
+                        <p><a href="mailto:info@mathugama.lk">info@mathugama.lk</a><br><a href="mailto:geo@mathugama.lk">geo@mathugama.lk</a></p>
+                    </div>
+                    <div class="info-card">
+                        <div class="info-icon">📞</div>
+                        <h4>Call Us</h4>
+                        <p>+94 34 224 7xxx<br>Mon-Fri, 9am to 4pm</p>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form class="contact-form">
+                        <div class="form-row">
+                            <div class="input-group half">
+                                <label>First Name</label>
+                                <input type="text" required>
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="input-group half">
+                                <label>Last Name</label>
+                                <input type="text" required>
+                                <span class="focus-border"></span>
+                            </div>
+                        </div>
+                        <div class="input-group">
+                            <label>Email Address</label>
+                            <input type="email" required>
+                            <span class="focus-border"></span>
+                        </div>
+                        <div class="input-group">
+                            <label>How can we help?</label>
+                            <textarea rows="5" required></textarea>
+                            <span class="focus-border"></span>
+                        </div>
+                        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
