@@ -389,19 +389,141 @@
         </div>
     </footer>
     <script>
-        // Layer switch interaction (Updated for Overlays)
+        // ---------------------------------------------------------
+        // 1. Map Layer Switching Logic (Existing)
+        // ---------------------------------------------------------
         document.querySelectorAll('.layer-btn').forEach(button => {
             button.addEventListener('click', () => {
-                // 1. Remove active class from all buttons
                 document.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active'));
-                // 2. Add active class to clicked button
                 button.classList.add('active');
-                
-                // 3. Change the data-active attribute on the custom layers container
                 const selectedLayer = button.getAttribute('data-layer');
                 document.getElementById('mapCustomLayers').setAttribute('data-active', selectedLayer);
             });
         });
+
+        // ---------------------------------------------------------
+        // 2. Animated Numbers & SVG Rings (Demographics)
+        // ---------------------------------------------------------
+        const statsSection = document.querySelector('.stats-section');
+        const statNumbers = document.querySelectorAll('.stat-number');
+        const statCircles = document.querySelectorAll('.stat-circle');
+        let animated = false;
+
+        const animateNumbers = () => {
+            statNumbers.forEach(numberEl => {
+                const target = +numberEl.getAttribute('data-target');
+                const suffix = numberEl.getAttribute('data-suffix') || '';
+                const duration = 2000; // 2 seconds
+                const increment = target / (duration / 16); // 60fps
+                
+                let current = 0;
+                const updateNumber = () => {
+                    current += increment;
+                    if (current < target) {
+                        numberEl.innerText = Math.ceil(current).toLocaleString() + suffix;
+                        requestAnimationFrame(updateNumber);
+                    } else {
+                        numberEl.innerText = target.toLocaleString() + suffix;
+                    }
+                };
+                updateNumber();
+            });
+            
+            // Trigger SVG ring animations
+            statCircles.forEach(circle => circle.classList.add('animate'));
+        };
+
+        // Trigger animation when scrolled into view
+        const observer = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting && !animated) {
+                animateNumbers();
+                animated = true;
+            }
+        }, { threshold: 0.5 });
+
+        if(statsSection) observer.observe(statsSection);
+
+        // ---------------------------------------------------------
+        // 3. Database Simulation Logic (Forum feed)
+        // ---------------------------------------------------------
+        
+        // This array simulates what you would receive from your backend (e.g., MySQL or Firebase)
+        let mockDatabaseFeed = [
+            { id: 1, name: "Kavindu Perera", message: "Visited the Pahiyangala caves yesterday. Truly breathtaking history right in our backyard!", date: "2 mins ago" },
+            { id: 2, name: "Sarah Jenkins", message: "The rubber estates look so lush after the rain. Can anyone recommend a good hiking trail?", date: "1 hour ago" },
+            { id: 3, name: "Amila D.", message: "Great initiative putting this map together. The geographical data is very accurate.", date: "3 hours ago" }
+        ];
+
+        const feedContainer = document.getElementById('messagesFeed');
+        const communityForm = document.getElementById('communityForm');
+        const submitBtn = document.getElementById('submitBtn');
+
+        // Function to render messages to the UI
+        const renderMessages = () => {
+            feedContainer.innerHTML = ''; // Clear loading text
+            mockDatabaseFeed.forEach(msg => {
+                const msgHTML = `
+                    <div class="message-card">
+                        <div class="msg-header">
+                            <span class="msg-name">${msg.name}</span>
+                            <span class="msg-date">${msg.date}</span>
+                        </div>
+                        <div class="msg-body">${msg.message}</div>
+                    </div>
+                `;
+                feedContainer.insertAdjacentHTML('beforeend', msgHTML);
+            });
+        };
+
+        // Simulate fetching data on page load
+        setTimeout(() => {
+            renderMessages();
+        }, 800); // 0.8s artificial delay to simulate network request
+
+        // Handle Form Submission (Pushing to Database)
+        communityForm.addEventListener('submit', (e) => {
+            e.preventDefault(); // Stop page reload
+            
+            const nameInput = document.getElementById('community-name').value;
+            const noteInput = document.getElementById('community-note').value;
+            
+            // UI Feedback
+            submitBtn.innerText = 'Posting...';
+            submitBtn.style.opacity = '0.7';
+
+            /* 
+             * BACKEND INTEGRATION NOTE: 
+             * Here is where you would use fetch() to post to your database.
+             * Example:
+             * fetch('/api/add-message', {
+             *    method: 'POST',
+             *    body: JSON.stringify({ name: nameInput, message: noteInput })
+             * })
+             */
+
+            // Simulate server response time
+            setTimeout(() => {
+                // Add to our mock array (putting newest at the top)
+                mockDatabaseFeed.unshift({
+                    id: Date.now(),
+                    name: nameInput,
+                    message: noteInput,
+                    date: "Just now"
+                });
+
+                // Keep only the latest 4 messages for UI cleanlienss
+                if(mockDatabaseFeed.length > 4) mockDatabaseFeed.pop();
+
+                renderMessages();
+                communityForm.reset();
+                
+                // Reset UI
+                submitBtn.innerText = 'Post to Board';
+                submitBtn.style.opacity = '1';
+                
+            }, 600);
+        });
     </script>
+    
 </body>
 </html>
