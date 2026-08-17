@@ -205,7 +205,54 @@
                 </div>
             </div>
         </section>
+        <!-- Socio-Economic & Demographics Section -->
+        <section id="demographics" class="stats-section">
+            <div class="section-header animate-on-scroll">
+                <h2>Mathugama in Numbers</h2>
+                <p>A vibrant, growing community driven by agriculture, education, and sustainable development.</p>
+            </div>
+            
+            <div class="stats-grid">
+                <!-- Stat 1 -->
+                <div class="stat-box animate-on-scroll" style="--delay: 0.1s">
+                    <div class="stat-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="progress" cx="50" cy="50" r="45" style="--percent: 85;"></circle>
+                        </svg>
+                        <div class="stat-number" data-target="85000">0</div>
+                    </div>
+                    <h4>Total Population</h4>
+                    <p>Estimated residents across the divisional secretariat.</p>
+                </div>
 
+                <!-- Stat 2 -->
+                <div class="stat-box animate-on-scroll" style="--delay: 0.3s">
+                    <div class="stat-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="progress" cx="50" cy="50" r="45" style="--percent: 96;"></circle>
+                        </svg>
+                        <div class="stat-number" data-target="96" data-suffix="%">0</div>
+                    </div>
+                    <h4>Literacy Rate</h4>
+                    <p>High educational standards across 40+ local schools.</p>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="stat-box animate-on-scroll" style="--delay: 0.5s">
+                    <div class="stat-circle">
+                        <svg viewBox="0 0 100 100">
+                            <circle class="bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="progress" cx="50" cy="50" r="45" style="--percent: 65;"></circle>
+                        </svg>
+                        <div class="stat-number" data-target="65" data-suffix="%">0</div>
+                    </div>
+                    <h4>Agricultural Land</h4>
+                    <p>Dedicated to rubber, tea, and paddy cultivation.</p>
+                </div>
+            </div>
+        </section>
         <!-- Community Section -->
         <section id="community" class="community-section">
             <div class="community-layout animate-on-scroll">
@@ -219,21 +266,33 @@
                     </div>
                 </div>
                 
-                <div class="community-board">
-                    <form class="comment-form" onsubmit="event.preventDefault(); alert('Thank you for sharing your thoughts!'); this.reset();">
-                        <h4>Leave a Note</h4>
-                        <div class="input-group">
-                            <label for="community-name">Your Name</label>
-                            <input type="text" id="community-name" placeholder="E.g. Aryan Silva" required>
-                            <span class="focus-border"></span>
+                <div class="community-board-wrapper">
+                    <!-- The Input Form -->
+                    <div class="community-board">
+                        <form id="communityForm" class="comment-form">
+                            <h4>Leave a Note</h4>
+                            <div class="input-group">
+                                <label for="community-name">Your Name</label>
+                                <input type="text" id="community-name" placeholder="E.g. Aryan Silva" required>
+                                <span class="focus-border"></span>
+                            </div>
+                            <div class="input-group">
+                                <label for="community-note">Your Story or Feedback</label>
+                                <textarea id="community-note" rows="3" placeholder="Share your thoughts about Mathugama..." required></textarea>
+                                <span class="focus-border"></span>
+                            </div>
+                            <button type="submit" class="btn-primary" id="submitBtn">Post to Board</button>
+                        </form>
+                    </div>
+
+                    <!-- The Live Forum Display -->
+                    <div class="recent-messages-container">
+                        <h4>Recent Voices</h4>
+                        <div class="messages-feed" id="messagesFeed">
+                            <!-- Messages will be injected here via JavaScript -->
+                            <div class="loading-text">Loading messages from database...</div>
                         </div>
-                        <div class="input-group">
-                            <label for="community-note">Your Story or Feedback</label>
-                            <textarea id="community-note" rows="4" placeholder="Share your thoughts about Mathugama..." required></textarea>
-                            <span class="focus-border"></span>
-                        </div>
-                        <button type="submit" class="btn-primary">Post to Board</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -295,7 +354,40 @@
         </section>
 
     </main>
-
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="logo">
+                    <span class="logo-icon">⬡</span> MATHUGAMA
+                </div>
+                <p>The Green Heart of Sri Lanka. Preserving nature, embracing the future.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">Landmarks</a></li>
+                    <li><a href="#geo-portal">Interactive Map</a></li>
+                    <li><a href="#demographics">Statistics</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-social">
+                <h4>Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#" aria-label="Facebook">📘</a>
+                    <a href="#" aria-label="Instagram">📸</a>
+                    <a href="#" aria-label="Twitter">🐦</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mathugama Divisional Secretariat. All Rights Reserved.</p>
+        </div>
+    </footer>
     <script>
         // Layer switch interaction (Updated for Overlays)
         document.querySelectorAll('.layer-btn').forEach(button => {
