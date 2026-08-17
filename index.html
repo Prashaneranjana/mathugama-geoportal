@@ -20,11 +20,12 @@
                     <li style="--delay: 0.1s"><a href="#home">Home</a></li>
                     <li style="--delay: 0.2s"><a href="#about">About</a></li>
                     <li style="--delay: 0.3s"><a href="#geo-portal">Geo-Portal</a></li>
-                    <li style="--delay: 0.4s"><a href="#community">Community</a></li>
-                    <li style="--delay: 0.5s"><a href="#contact">Contact</a></li>
+                    <li style="--delay: 0.4s"><a href="#demographics">Stats</a></li>
+                    <li style="--delay: 0.5s"><a href="#community">Community</a></li>
+                    <li style="--delay: 0.6s"><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
-            <div class="nav-action" style="--delay: 0.6s">
+            <div class="nav-action" style="--delay: 0.7s">
                 <a href="#geo-portal" class="btn-outline">Explore Map</a>
             </div>
         </header>
@@ -115,9 +116,8 @@
                 
                 <div class="map-grid-overlay"></div>
                 
-                <!-- NEW: Dynamic Animated Map Layers -->
+                <!-- Dynamic Animated Map Layers -->
                 <div class="map-custom-layers" id="mapCustomLayers" data-active="terrain">
-                    
                     <!-- Layer: Plantation Zones -->
                     <div class="layer-group layer-plantations">
                         <div class="plantation-zone p-zone-1">
@@ -136,7 +136,6 @@
 
                     <!-- Layer: Infrastructure / Accessibility -->
                     <div class="layer-group layer-infrastructure">
-                        
                         <!-- Animated Route to Colombo -->
                         <div class="colombo-route">
                             <div class="route-dash-line"></div>
@@ -198,13 +197,14 @@
                     </div>
                 </div>
 
-                <!-- Animated Map Marker (Unchanged & Centered) -->
+                <!-- Animated Map Marker -->
                 <div class="map-marker" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
                     <div class="pulse-ring"></div>
                     <div class="marker-dot"></div>
                 </div>
             </div>
         </section>
+
         <!-- Socio-Economic & Demographics Section -->
         <section id="demographics" class="stats-section">
             <div class="section-header animate-on-scroll">
@@ -253,6 +253,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Community Section -->
         <section id="community" class="community-section">
             <div class="community-layout animate-on-scroll">
@@ -354,6 +355,7 @@
         </section>
 
     </main>
+
     <!-- Footer -->
     <footer class="site-footer">
         <div class="footer-grid">
@@ -388,9 +390,10 @@
             <p>&copy; 2026 Mathugama Divisional Secretariat. All Rights Reserved.</p>
         </div>
     </footer>
+
     <script>
         // ---------------------------------------------------------
-        // 1. Map Layer Switching Logic (Existing)
+        // 1. Map Layer Switching Logic
         // ---------------------------------------------------------
         document.querySelectorAll('.layer-btn').forEach(button => {
             button.addEventListener('click', () => {
@@ -447,7 +450,6 @@
         // 3. Database Simulation Logic (Forum feed)
         // ---------------------------------------------------------
         
-        // This array simulates what you would receive from your backend (e.g., MySQL or Firebase)
         let mockDatabaseFeed = [
             { id: 1, name: "Kavindu Perera", message: "Visited the Pahiyangala caves yesterday. Truly breathtaking history right in our backyard!", date: "2 mins ago" },
             { id: 2, name: "Sarah Jenkins", message: "The rubber estates look so lush after the rain. Can anyone recommend a good hiking trail?", date: "1 hour ago" },
@@ -458,9 +460,8 @@
         const communityForm = document.getElementById('communityForm');
         const submitBtn = document.getElementById('submitBtn');
 
-        // Function to render messages to the UI
         const renderMessages = () => {
-            feedContainer.innerHTML = ''; // Clear loading text
+            feedContainer.innerHTML = ''; 
             mockDatabaseFeed.forEach(msg => {
                 const msgHTML = `
                     <div class="message-card">
@@ -478,32 +479,19 @@
         // Simulate fetching data on page load
         setTimeout(() => {
             renderMessages();
-        }, 800); // 0.8s artificial delay to simulate network request
+        }, 800); 
 
-        // Handle Form Submission (Pushing to Database)
+        // Handle Form Submission
         communityForm.addEventListener('submit', (e) => {
-            e.preventDefault(); // Stop page reload
+            e.preventDefault();
             
             const nameInput = document.getElementById('community-name').value;
             const noteInput = document.getElementById('community-note').value;
             
-            // UI Feedback
             submitBtn.innerText = 'Posting...';
             submitBtn.style.opacity = '0.7';
 
-            /* 
-             * BACKEND INTEGRATION NOTE: 
-             * Here is where you would use fetch() to post to your database.
-             * Example:
-             * fetch('/api/add-message', {
-             *    method: 'POST',
-             *    body: JSON.stringify({ name: nameInput, message: noteInput })
-             * })
-             */
-
-            // Simulate server response time
             setTimeout(() => {
-                // Add to our mock array (putting newest at the top)
                 mockDatabaseFeed.unshift({
                     id: Date.now(),
                     name: nameInput,
@@ -511,19 +499,16 @@
                     date: "Just now"
                 });
 
-                // Keep only the latest 4 messages for UI cleanlienss
                 if(mockDatabaseFeed.length > 4) mockDatabaseFeed.pop();
 
                 renderMessages();
                 communityForm.reset();
                 
-                // Reset UI
                 submitBtn.innerText = 'Post to Board';
                 submitBtn.style.opacity = '1';
                 
             }, 600);
         });
     </script>
-    
 </body>
 </html>
