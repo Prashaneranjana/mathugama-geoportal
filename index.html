@@ -115,6 +115,51 @@
                 
                 <div class="map-grid-overlay"></div>
                 
+                <!-- NEW: Dynamic Animated Map Layers -->
+                <div class="map-custom-layers" id="mapCustomLayers" data-active="terrain">
+                    
+                    <!-- Layer: Plantation Zones -->
+                    <div class="layer-group layer-plantations">
+                        <div class="plantation-zone p-zone-1">
+                            <div class="zone-pulse"></div>
+                            <span class="zone-label">Yatadola Estate</span>
+                        </div>
+                        <div class="plantation-zone p-zone-2">
+                            <div class="zone-pulse"></div>
+                            <span class="zone-label">Pallegoda Estate</span>
+                        </div>
+                        <div class="plantation-zone p-zone-3">
+                            <div class="zone-pulse"></div>
+                            <span class="zone-label">Sirikandura Estate</span>
+                        </div>
+                    </div>
+
+                    <!-- Layer: Infrastructure / Accessibility -->
+                    <div class="layer-group layer-infrastructure">
+                        
+                        <!-- Animated Route to Colombo -->
+                        <div class="colombo-route">
+                            <div class="route-dash-line"></div>
+                            <div class="route-info">
+                                <span class="route-icon">🏙️</span>
+                                <div class="route-text-block">
+                                    <strong>Colombo City</strong>
+                                    <span class="route-dist">Approx. 64 km</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Expressway Accessibility Badge -->
+                        <div class="expressway-access">
+                            <div class="icon-box">🛣️</div>
+                            <div>
+                                <strong>Southern Expressway (E01)</strong>
+                                <span>Accessible via Welipenna Interchange (12km)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Floating Map Controls -->
                 <div class="map-controls">
                     <h4>Map Layers</h4>
@@ -125,7 +170,7 @@
                         <span class="layer-icon">🌿</span> Plantation Zones
                     </button>
                     <button type="button" class="layer-btn" data-layer="infrastructure">
-                        <span class="layer-icon">🛣️</span> Infrastructure
+                        <span class="layer-icon">🛣️</span> Accessibility
                     </button>
                     
                     <div class="map-stats">
@@ -144,16 +189,16 @@
                         <h4>Export GIS Data</h4>
                         <div class="export-actions">
                             <a href="mathugama_geopackage.zip" download="mathugama_buildings.zip" class="btn-primary export-btn">
-                                <span>🏢</span> Download Buildings (.zip)
+                                <span>🏢</span> Download Buildings
                             </a>
                             <a href="msthugama road.zip" download="mathugama_roads.zip" class="btn-primary export-btn secondary">
-                                <span>🛣️</span> Download Road Network (.zip)
+                                <span>🛣️</span> Download Roads
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Animated Map Marker -->
+                <!-- Animated Map Marker (Unchanged & Centered) -->
                 <div class="map-marker" style="top: 50%; left: 50%; transform: translate(-50%, -50%);">
                     <div class="pulse-ring"></div>
                     <div class="marker-dot"></div>
@@ -252,11 +297,17 @@
     </main>
 
     <script>
-        // Layer switch interaction
+        // Layer switch interaction (Updated for Overlays)
         document.querySelectorAll('.layer-btn').forEach(button => {
             button.addEventListener('click', () => {
+                // 1. Remove active class from all buttons
                 document.querySelectorAll('.layer-btn').forEach(b => b.classList.remove('active'));
+                // 2. Add active class to clicked button
                 button.classList.add('active');
+                
+                // 3. Change the data-active attribute on the custom layers container
+                const selectedLayer = button.getAttribute('data-layer');
+                document.getElementById('mapCustomLayers').setAttribute('data-active', selectedLayer);
             });
         });
     </script>
